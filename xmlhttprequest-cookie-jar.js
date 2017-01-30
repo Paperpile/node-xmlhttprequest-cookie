@@ -105,7 +105,7 @@ CookieJar.prototype = {
     findFuzzy: function (domain, _path) {
         var cookies = [];
         var found = {};
-        while (domain !== "") {
+        while (domain !== "" && domain != null) {
             var path = _path;
             while (path !== "") {
                 var cookies_here = this.find(domain, path);

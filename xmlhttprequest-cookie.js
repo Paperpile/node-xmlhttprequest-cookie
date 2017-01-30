@@ -41,6 +41,7 @@ var cookie_recv = function (url, xhr) {
     var cookies = xhr.getResponseHeader("Set-Cookie");
     if (typeof cookies === "object" && cookies !== null && cookies.length > 0) {
         for (var i = 0; i < cookies.length; i++) {
+            if (cookies[i].length === 0) continue;
             var cookie = Cookie.build(cookies[i], url);
             cookieJar.insert(cookie);
             if (xhr.debug)
@@ -76,7 +77,9 @@ var cookie_send = function (url, xhr) {
 var XMLHttpRequestWrapper = function () {
     /*  create object with original constructor  */
     var xhr = new XMLHttpRequest();
-
+    xhr.cookie_recv = cookie_recv;
+    xhr.cookie_send = cookie_send;
+    
     /*  intercept "open" method to gather URL  */
     var url = null;
     var open_orig = xhr.open;

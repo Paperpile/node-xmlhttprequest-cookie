@@ -99,6 +99,9 @@ Cookie.build = function (cookieString, url) {
         if (cookieParam !== null && cookieParam.length) {
             var attr = cookieParam[1].toLowerCase();
             if (typeof cookie[attr] !== "undefined")
+                // fix malformed cookie domains which begin with . 
+                if (attr == "domain" && typeof cookieParam[2] ==  "string" && cookieParam[2].indexOf('.') === 0)  
+                    cookieParam[2] = cookieParam[2].replace('.', ''); 
                 cookie[attr] = typeof cookieParam[2] === "string" ? cookieParam[2] : true;
         }
     }
