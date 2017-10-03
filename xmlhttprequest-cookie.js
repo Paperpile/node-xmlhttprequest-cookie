@@ -68,7 +68,7 @@ var cookie_send = function (url, xhr) {
     if (cookie !== "") {
         if (xhr.debug)
             console.log("XMLHttpRequest-Cookie: send cookie(s): ", cookie);
-        xhr.setRequestHeader("Cookie", cookie);
+        xhr.setRequestHeader("Cookie", encodeURI(cookie.replace(/\s+/g, '')));
     }
     xhr.setDisableHeaderCheck(false);
 };
