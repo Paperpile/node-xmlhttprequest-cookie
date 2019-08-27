@@ -74,9 +74,9 @@ var cookie_send = function (url, xhr) {
 };
 
 /*  define XMLHttpRequest wrapper constructor  */
-var XMLHttpRequestWrapper = function () {
+var XMLHttpRequestWrapper = function (args) {
     /*  create object with original constructor  */
-    var xhr = new XMLHttpRequest();
+    var xhr = new XMLHttpRequest(args);
     xhr.cookie_recv = cookie_recv;
     xhr.cookie_send = cookie_send;
     
